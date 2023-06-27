@@ -26,4 +26,4 @@ The binned SFH can be found in the `data` folder.
 - [https://arxiv.org/pdf/1805.09904.pdf](https://arxiv.org/pdf/1805.09904.pdf)
   - Galaxy classification on rest-frame magnitudes and spectroscopic redshifts.
 - [Interpretable Time-series Classification on Few-shot Samples](https://arxiv.org/pdf/2006.02031.pdf)
-  - Wavalets: Other approach on the time-series classification.
+  - Shapelets: Other approach on the time-series classification.
