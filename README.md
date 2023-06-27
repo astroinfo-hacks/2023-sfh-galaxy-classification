@@ -16,3 +16,14 @@ The binned SFH can be found in the `data` folder.
 
 - [Binned SFHs `visualitation`](Data-visluation.ipynb)
 - [Time-series classification with `tslearn`](2023-sfh-galaxy-classification/k-means_time-series-example.ipynb)
+
+## Bibliography
+
+- [Analyzing Astronomical Data with Machine Learning Techniques](https://arxiv.org/pdf/2302.11573.pdf)
+  - Small review on the state of the art on astro-ML techniques.
+- [Unsupervised classification of CIGALE galaxy spectra](https://arxiv.org/pdf/2205.09344.pdf)
+  - SED fitting & Galaxy spectra calssification.
+- [https://arxiv.org/pdf/1805.09904.pdf](https://arxiv.org/pdf/1805.09904.pdf)
+  - Galaxy classification on rest-frame magnitudes and spectroscopic redshifts.
+- [Interpretable Time-series Classification on Few-shot Samples](https://arxiv.org/pdf/2006.02031.pdf)
+  - Wavalets: Other approach on the time-series classification.
