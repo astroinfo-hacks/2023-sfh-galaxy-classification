@@ -23,7 +23,11 @@ The binned SFH can be found in the `data` folder.
   - Small review on the state of the art on astro-ML techniques.
 - [Unsupervised classification of CIGALE galaxy spectra](https://arxiv.org/pdf/2205.09344.pdf)
   - SED fitting & Galaxy spectra calssification.
-- [https://arxiv.org/pdf/1805.09904.pdf](https://arxiv.org/pdf/1805.09904.pdf)
+- [The complexity of galaxy populations](https://arxiv.org/pdf/1805.09904.pdf)
   - Galaxy classification on rest-frame magnitudes and spectroscopic redshifts.
 - [Interpretable Time-series Classification on Few-shot Samples](https://arxiv.org/pdf/2006.02031.pdf)
   - Shapelets: Other approach on the time-series classification.
+- [Evolution of the star formation with time (see chapter IV) ](https://people.lam.fr/buat.veronique/Veronique/Teaching_files/Lecture4.pdf)
+  - Lecture from V.Buat@LAM
+- [Quenched galaxy](http://astro.vaporia.com/start/quenchedgalaxy.html)
+- [Fast (and slow) quenching channels](https://arxiv.org/pdf/1802.07628.pdf)
