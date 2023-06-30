@@ -21,6 +21,8 @@ The binned SFH can be found in the `data` folder.
 
 - [Analyzing Astronomical Data with Machine Learning Techniques](https://arxiv.org/pdf/2302.11573.pdf)
   - Small review on the state of the art on astro-ML techniques.
+- [K-Means Clustering: How It Works & Finding The Optimum Number Of Clusters In The Data](https://towardsdatascience.com/k-means-clustering-how-it-works-finding-the-optimum-number-of-clusters-in-the-data-13d18739255c)
+  - Mathematical formulation, Finding the optimum number of clusters and a working example in Python 
 - [Unsupervised classification of CIGALE galaxy spectra](https://arxiv.org/pdf/2205.09344.pdf)
   - SED fitting & Galaxy spectra calssification.
 - [The complexity of galaxy populations](https://arxiv.org/pdf/1805.09904.pdf)
