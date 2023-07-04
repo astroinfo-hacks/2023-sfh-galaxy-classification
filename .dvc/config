@@ -1,8 +1,10 @@
 [core]
-    remote = storage
+    remote = http-storage
 ['remote "storage"']
     url = /renoir_data_02/public2/AstroInfo/DVC/2023-sfh-galaxy-classification
 ['remote "ssh-storage"']
     url = ssh://marcosmo.in2p3.fr//renoir_data_02/public2/AstroInfo/DVC/2023-sfh-galaxy-classification
     user = zoubian
     port = 22
+['remote "http-storage"']
+    url = https://www.cppm.in2p3.fr/renoir/public2/AstroInfo/DVC/2023-sfh-galaxy-classification
