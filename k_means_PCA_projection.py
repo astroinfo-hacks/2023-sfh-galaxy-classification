@@ -112,7 +112,7 @@ plt.show()
 
 # project to 3D for plotting
 pca = PCA(n_components=3)
-X_train_3d = pca.fit_transform(X_train)
+X_train_3d = pca.fit_transform(SFH_lev)
 
 unique_labels = np.unique(y_pred)
 num_labels = len(unique_labels)
@@ -136,21 +136,25 @@ cbar = fig.colorbar(scatter)
 plt.show()
 
 
-# In[23]:
+import plotly.graph_objects as go
+import numpy as np
+from sklearn.decomposition import PCA
 
 # project to 3D for plotting
 pca = PCA(n_components=3)
-X_train_3d = pca.fit_transform(X_train)
+X_train_3d = pca.fit_transform(SFH_lev)
 
-unique_labels = np.unique(y_pred)
-num_labels = len(unique_labels)
-colors = cm.rainbow(np.linspace(0, 1, num_labels))
+# Select the cluster you want to plot
+cluster_to_plot = 0
 
-# Create a scatter plot trace
+# Filter the data points belonging to the selected cluster
+X_cluster = X_train_3d
+
+# Create a scatter plot trace for the selected cluster
 scatter = go.Scatter3d(
-    x=X_train_3d[:, 0],
-    y=X_train_3d[:, 1],
-    z=X_train_3d[:, 2],
+    x=X_cluster[:, 0],
+    y=X_cluster[:, 1],
+    z=X_cluster[:, 2],
     mode='markers',
     marker=dict(
         size=2,
@@ -174,6 +178,5 @@ layout = go.Layout(
 # Create the figure and add the scatter plot trace
 fig = go.Figure(data=[scatter], layout=layout)
 
-# Show the interactive plot
 fig.show()
 
