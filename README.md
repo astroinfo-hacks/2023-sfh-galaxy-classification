@@ -15,7 +15,7 @@ The binned SFH can be found in the `data` folder.
 ## Notebook
 
 - [Binned SFHs `visualitation`](Data-visluation.ipynb)
-- [Time-series classification with `tslearn`](2023-sfh-galaxy-classification/k-means_time-series-example.ipynb)
+- [Time-series classification with `tslearn`](k-means_time-series-example.ipynb)
 
 ## Bibliography
 
