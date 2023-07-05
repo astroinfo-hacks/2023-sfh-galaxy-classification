@@ -29,7 +29,14 @@ ln -s /home/astroinfo2023/users4astroinfo2023/arango/Gal_class/2023-sfh-galaxy-c
 
 #### @ Jean Zay
 
-TBD
+A copy of the dataset is available on the mesocentre at the following location: `/gpfswork/rech/owt/commun/galaxy_classification/2023-sfh-galaxy-classification/data`.
+
+To run the notebooks on the mesocentre, create a symbolic link to the data directory in your home directory:
+
+```bash
+cd /path/to/your/git/clone
+ln -s /gpfswork/rech/owt/commun/galaxy_classification/2023-sfh-galaxy-classification/data data
+```
 
 #### DVC
 
