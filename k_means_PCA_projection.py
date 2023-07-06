@@ -3,6 +3,7 @@ import pandas as pd
 
 import numpy as np
 import numpy
+from sklearn.mixture import GaussianMixture
 
 from tslearn.clustering import TimeSeriesKMeans
 from tslearn.preprocessing import TimeSeriesScalerMeanVariance
@@ -179,4 +180,5 @@ layout = go.Layout(
 fig = go.Figure(data=[scatter], layout=layout)
 
 fig.show()
+
 
