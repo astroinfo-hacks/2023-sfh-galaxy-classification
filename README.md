@@ -10,12 +10,53 @@ You can watch the [slides][slides] and the [presentation itself][telecon].
 
 ## Dataset
 
-The binned SFH can be found in the `data` folder.
+### Description
+
+### Location
+
+The notebooks assume that the data is located in the directory `data`.
+
+#### @ mesocentre
+
+A copy of the dataset is available on the mesocentre at the following location: `/home/astroinfo2023/users4astroinfo2023/arango/Gal_class/2023-sfh-galaxy-classification/data`.
+
+To run the notebooks on the mesocentre, create a symbolic link to the data directory in your home directory:
+
+```bash
+cd /path/to/your/git/clone
+ln -s /home/astroinfo2023/users4astroinfo2023/arango/Gal_class/2023-sfh-galaxy-classification/data data
+```
+
+#### @ Jean Zay
+
+A copy of the dataset is available on the mesocentre at the following location: `/gpfswork/rech/owt/commun/galaxy_classification/2023-sfh-galaxy-classification/data`.
+
+To run the notebooks on the mesocentre, create a symbolic link to the data directory in your home directory:
+
+```bash
+cd /path/to/your/git/clone
+ln -s /gpfswork/rech/owt/commun/galaxy_classification/2023-sfh-galaxy-classification/data data
+```
+
+#### DVC
+
+The data is tracked with [DVC](https://dvc.org/).
+
+To download the data, run:
+
+```bash
+dvc pull
+ln -s data_dvc data
+```
 
 ## Notebook
 
 - [Binned SFHs `visualitation`](Data-visluation.ipynb)
 - [Time-series classification with `tslearn`](k-means_time-series-example.ipynb)
+
+## Pipeline
+
+[![](https://mermaid.ink/img/pako:eNqNk01r20AQhv_KMIeQCO_Bdj7Ah5aQkhoa-RCHFNotZCKN6yWrXbG7whEh_z0rS5Ytk0J10r6aZz7e0b5hZnPGGa603WRrckEagGXgcvxb4lOS3NMGlrdznyTNh92zoEBa1fQk8Y80O2TSIg-OjF9ZV3wCpvQ6ZKZdmcrAD5FyJIfAtQn-qMx5i3znADe68oEd3NEz63-TLXex4ww7Cgx5HAI8hyNuTkYRnMBNdEPXw9KXbYq00kGJTJP3MJgueqljU1FXK8UuSeB_M1-1ma_LUtdgDTgmve0wSfaBhc3Hp6cS728lnp11yqRRlo_pgTRtpMWiVfY1xkKAxLndQEGmhmBf2PivEkGIL9v99YscBmaty4eh035_nXDeb6cTLnrbO-GyN1EI0UxydJ4cnacH59jNzzUFUB7CmuGZfWjmZH3Q0lUzKI6wYFeQyuM__dZkkBiJgiXO4mtO7kWiNO8xjqpgl7XJcBZcxSOsymg3f1P011GBsxVpH1XOVbAubS_J9q6MsCTzy9pdzPsHdlb_aA?type=png)](https://mermaid.live/edit#pako:eNqNk01r20AQhv_KMIeQCO_Bdj7Ah5aQkhoa-RCHFNotZCKN6yWrXbG7whEh_z0rS5Ytk0J10r6aZz7e0b5hZnPGGa603WRrckEagGXgcvxb4lOS3NMGlrdznyTNh92zoEBa1fQk8Y80O2TSIg-OjF9ZV3wCpvQ6ZKZdmcrAD5FyJIfAtQn-qMx5i3znADe68oEd3NEz63-TLXex4ww7Cgx5HAI8hyNuTkYRnMBNdEPXw9KXbYq00kGJTJP3MJgueqljU1FXK8UuSeB_M1-1ma_LUtdgDTgmve0wSfaBhc3Hp6cS728lnp11yqRRlo_pgTRtpMWiVfY1xkKAxLndQEGmhmBf2PivEkGIL9v99YscBmaty4eh035_nXDeb6cTLnrbO-GyN1EI0UxydJ4cnacH59jNzzUFUB7CmuGZfWjmZH3Q0lUzKI6wYFeQyuM__dZkkBiJgiXO4mtO7kWiNO8xjqpgl7XJcBZcxSOsymg3f1P011GBsxVpH1XOVbAubS_J9q6MsCTzy9pdzPsHdlb_aA)
 
 ## Bibliography
 
