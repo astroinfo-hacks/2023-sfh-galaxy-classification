@@ -18,6 +18,31 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.preprocessing import label_binarize
 from sklearn.model_selection import train_test_split
 
+# slurm 
+import os
+slurm_array_task_id=int(os.environ["SLURM_ARRAY_TASK_ID"])
+
+def set_pipeline_parameters():
+    match slurm_array_task_id:
+        case 0:
+            num_clusters=3
+            model_type='rdf'
+            rdf_num_estimators=100
+            rdf_max_depth=10
+            svm_kernel=None
+        case 1:
+            num_clusters=3
+            model_type='svm'
+            rdf_num_estimators=None
+            rdf_max_depth=None
+            svm_kernel='linear'
+        default:
+            num_clusters=None
+            model_type=None
+            rdf_num_estimators=None
+            rdf_max_depth=None
+            svm_kernel=None
+    return {'num_clusters':num_clusters,'model_type':model_type,'rdf_num_estimators':rdf_num_estimators,'rdf_max_depth':rdf_max_depth,'svm_kernel':svm_kernel}
 
 def read_sfh_binned_data(dirname,filename):
     result = re.search('binned_SFHs-(.*)levels-JWST_(.*).txt', filename)
@@ -85,7 +110,10 @@ def train_classifier(dataset, classes):
 
     X_test,X_val,Y_test,Y_val = train_test_split( X_test, Y_test, test_size=0.5)
 
-    classifier = OneVsRestClassifier(LinearSVC(probability=True))
+    if parameters.model_type == 'rdf':
+        classifier = OneVsRestClassifier(RandomForestClassifier(n_estimators=parameters.rdf_num_estimators, max_depth=parameters.rdf_max_depth))
+    elif parameters.model_type == 'svm':
+        classifier = OneVsRestClassifier(SVC(kernel=parameters.svm_kernel,probability=True))
     #classifier = OneVsRestClassifier(LogisticRegression())
     classifier.fit(X_train, Y_train)
     Y_test_hat = classifier.predict(X_test)
@@ -94,13 +122,14 @@ def train_classifier(dataset, classes):
 
     return classifier, score
 
-def run_pipeline(SFH_dirname,SFH_filename,FITS_filepath,num_clusters=6):
+def run_pipeline(SFH_dirname,SFH_filename,FITS_filepath):
+    parameters = set_pipeline_parameters()
     df_photometry = get_photometry(FITS_filepath)
-    df_cluster = get_sfh_cluster(SFH_dirname,SFH_filename,num_clusters)
+    df_cluster = get_sfh_cluster(SFH_dirname,SFH_filename,parameters.num_clusters)
     df_flux = get_flux_cluster(df_cluster,df_photometry)
     classes = []
     for i in range(num_clusters):
         classes.append(i)
-    classifier, score = train_classifier(df_flux, classes)
+    classifier, score = train_classifier(df_flux, classes, parameters)
     return classifier, score
     
