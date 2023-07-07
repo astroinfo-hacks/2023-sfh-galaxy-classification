@@ -10,7 +10,44 @@ You can watch the [slides][slides] and the [presentation itself][telecon].
 
 ## Dataset
 
-The binned SFH can be found in the `data` folder.
+### Description
+
+### Location
+
+The notebooks assume that the data is located in the directory `data`.
+
+#### @ mesocentre
+
+A copy of the dataset is available on the mesocentre at the following location: `/home/astroinfo2023/users4astroinfo2023/arango/Gal_class/2023-sfh-galaxy-classification/data`.
+
+To run the notebooks on the mesocentre, create a symbolic link to the data directory in your home directory:
+
+```bash
+cd /path/to/your/git/clone
+ln -s /home/astroinfo2023/users4astroinfo2023/arango/Gal_class/2023-sfh-galaxy-classification/data data
+```
+
+#### @ Jean Zay
+
+A copy of the dataset is available on the mesocentre at the following location: `/gpfswork/rech/owt/commun/galaxy_classification/2023-sfh-galaxy-classification/data`.
+
+To run the notebooks on the mesocentre, create a symbolic link to the data directory in your home directory:
+
+```bash
+cd /path/to/your/git/clone
+ln -s /gpfswork/rech/owt/commun/galaxy_classification/2023-sfh-galaxy-classification/data data
+```
+
+#### DVC
+
+The data is tracked with [DVC](https://dvc.org/).
+
+To download the data, run:
+
+```bash
+dvc pull
+ln -s data_dvc data
+```
 
 ## Notebook
 
