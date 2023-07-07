@@ -1,1 +1,1 @@
-Example of TransFormers notebooks.
+Example of notebooks.
