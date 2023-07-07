@@ -22,6 +22,12 @@ from sklearn.model_selection import train_test_split
 import os
 slurm_array_task_id=int(os.environ["SLURM_ARRAY_TASK_ID"])
 
+# mlflow
+import mlflow
+from mlflow import log_metric, log_param, log_artifact
+mlflow.set_tracking_uri("file:/gpfsscratch/rech/owt/commun/galaxy_classification/mlruns")
+mlflow.set_experiment("cluster_classifier")
+
 def set_pipeline_parameters():
     match slurm_array_task_id:
         case 0:
@@ -91,8 +97,32 @@ def get_flux_cluster(df_cluster,df_photometry):
     return df_flux
     
 def train_classifier(dataset, classes):
+    # Initialize mlflow run
+    run_name = parameters.model_type+'_'
+    if parameters.model_type == 'rdf':
+        run_name = run_name+str(parameters.rdf_num_estimators)+'_'+str(parameters.rdf_max_depth)
+        mlflow.log_param("rdf_num_estimators", parameters.rdf_num_estimators)
+        mlflow.log_param("rdf_max_depth", parameters.rdf_max_depth)
+    elif parameters.model_type == 'svm':
+        run_name = run_name+str(parameters.svm_kernel)
+        mlflow.log_param("svm_kernel", parameters.svm_kernel)
+    run_name = run_name+'_'+str(parameters.num_clusters)
+    mlflow.start_run(run_name=run_name)
+
+    # log parameters
+    if parameters.model_type == 'rdf':
+        mlflow.log_param("rdf_num_estimators", parameters.rdf_num_estimators)
+        mlflow.log_param("rdf_max_depth", parameters.rdf_max_depth)
+    elif parameters.model_type == 'svm':
+        mlflow.log_param("svm_kernel", parameters.svm_kernel)
+    mlflow.log_param("num_clusters", parameters.num_clusters)
+    mlflow.log_param("model_type", parameters.model_type)
+
     features = dataset[["u_FLUX","gHSC_FLUX","rHSC_FLUX","iHSC_FLUX","zHSC_FLUX"]]
+    mlflow.log_param("features", features.columns)
     labels = dataset["cluster"]
+    mlflow.log_param("labels", labels.name)
+    
     X_data = features.to_numpy()
     Y_data= labels.to_numpy()
     
@@ -107,18 +137,22 @@ def train_classifier(dataset, classes):
     
     #Split training and test data
     X_train,X_test,Y_train,Y_test = train_test_split( X_data, Y_data, train_size=0.75)
+    mlflow.log_param("train_size", 0.75)
 
     X_test,X_val,Y_test,Y_val = train_test_split( X_test, Y_test, test_size=0.5)
+    mlflow.log_param("test_size", 0.5)
 
     if parameters.model_type == 'rdf':
         classifier = OneVsRestClassifier(RandomForestClassifier(n_estimators=parameters.rdf_num_estimators, max_depth=parameters.rdf_max_depth))
     elif parameters.model_type == 'svm':
         classifier = OneVsRestClassifier(SVC(kernel=parameters.svm_kernel,probability=True))
-    #classifier = OneVsRestClassifier(LogisticRegression())
+
     classifier.fit(X_train, Y_train)
     Y_test_hat = classifier.predict(X_test)
-    
     score = accuracy_score(Y_test, Y_test_hat)
+    mlflow.log_metric("accuracy_score", score)
+
+    mlflow.end_run()
 
     return classifier, score
 
